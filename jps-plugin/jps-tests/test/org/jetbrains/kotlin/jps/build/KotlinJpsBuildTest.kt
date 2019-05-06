@@ -709,13 +709,7 @@ open class KotlinJpsBuildTest : AbstractKotlinJpsBuildTestCase() {
     }
 
     fun testKotlinProjectWithEnabledNewInferenceInIDE() {
-        val oldValue = Registry.`is`("kotlin.use.new.inference.in.ide", false)
-        try {
-            Registry.get("kotlin.use.new.inference.in.ide").setValue(true)
-            doTest()
-        } finally {
-            Registry.get("kotlin.use.new.inference.in.ide").setValue(oldValue)
-        }
+         doTest()
     }
 
     fun testKotlinProjectWithErrorsBecauseOfNewInference() {

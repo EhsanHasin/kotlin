@@ -11,4 +11,7 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="IDEA_JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+  <component name="PropertiesComponent">
+    <property name="kotlin.use.new.inference.for.ide.analysis" value="true" />
+  </component>
 </project>

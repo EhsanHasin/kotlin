@@ -139,7 +139,7 @@ fun Project.getLanguageVersionSettings(
             CoroutineSupport.byCompilerArguments(KotlinCommonCompilerArgumentsHolder.getInstance(this@getLanguageVersionSettings).settings),
             languageVersion
         )
-        configureNewInferenceSupportInIDE(Registry.`is`("kotlin.use.new.inference.in.ide", false))
+        configureNewInferenceSupportInIDE(this@getLanguageVersionSettings)
         if (isReleaseCoroutines != null) {
             put(
                 LanguageFeature.ReleaseCoroutines,
@@ -196,7 +196,7 @@ private fun Module.computeLanguageVersionSettings(): LanguageVersionSettings {
     val languageFeatures = facetSettings.mergedCompilerArguments?.configureLanguageFeatures(MessageCollector.NONE)?.apply {
         configureCoroutinesSupport(facetSettings.coroutineSupport, languageVersion)
         configureMultiplatformSupport(facetSettings.platform?.kind, this@computeLanguageVersionSettings)
-        configureNewInferenceSupportInIDE(Registry.`is`("kotlin.use.new.inference.in.ide", false))
+        configureNewInferenceSupportInIDE(project)
     }.orEmpty()
 
     val analysisFlags = facetSettings.mergedCompilerArguments?.configureAnalysisFlags(MessageCollector.NONE).orEmpty()
@@ -252,9 +252,9 @@ fun MutableMap<LanguageFeature, LanguageFeature.State>.configureMultiplatformSup
 }
 
 fun MutableMap<LanguageFeature, LanguageFeature.State>.configureNewInferenceSupportInIDE(
-    enableNewInferenceInIDE: Boolean
+    project: Project
 ) {
-    if (enableNewInferenceInIDE) {
+    if (NewInferenceForIDEAnalysisComponent.isEnabled(project)) {
         putIfAbsent(LanguageFeature.NewInference, LanguageFeature.State.ENABLED)
     }
 }
