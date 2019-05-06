@@ -169,7 +169,7 @@
 
       <registryKey key="kotlin.use.new.inference.in.ide"
                    description="Whether to use an experimental generic type inference algorithm in IDE"
-                   defaultValue="false"
+                   defaultValue="true"
                    restartRequired="false"/>
     </extensions>
 
