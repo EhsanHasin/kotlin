@@ -97,14 +97,6 @@ public class KtBlockExpression extends LazyParseablePsiElement implements KtElem
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public PsiReference getReference() {
-        PsiReference[] references = getReferences();
-        if (references.length == 1) return references[0];
-        else return null;
-    }
-
-    @Override
     @NotNull
     public PsiElement[] getChildren() {
         PsiElement psiChild = getFirstChild();
@@ -120,10 +112,16 @@ public class KtBlockExpression extends LazyParseablePsiElement implements KtElem
         return result == null ? PsiElement.EMPTY_ARRAY : PsiUtilCore.toPsiElementArray(result);
     }
 
+    @Override
+    @SuppressWarnings("deprecation")
+    public PsiReference getReference() {
+        return null;
+    }
+
     @NotNull
     @Override
     public PsiReference[] getReferences() {
-        return KotlinReferenceProvidersService.getReferencesFromProviders(this);
+        return PsiReference.EMPTY_ARRAY;
     }
 
     @NotNull
