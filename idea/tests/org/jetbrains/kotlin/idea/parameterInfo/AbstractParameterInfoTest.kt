@@ -91,7 +91,7 @@ abstract class AbstractParameterInfoTest : LightCodeInsightFixtureTestCase() {
             Assert.assertEquals(expectedResultText, parameterInfoUIContext.resultText)
         } finally {
             if (configured) {
-                rollbackCompilerOptions(project, module)
+                rollbackCompilerOptions(project, myFixture.module)
             }
         }
     }
